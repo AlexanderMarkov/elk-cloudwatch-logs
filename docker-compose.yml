@@ -20,6 +20,8 @@ services:
         target: /usr/share/logstash/pipeline/logstash.conf
       - source: logstash.yml
         target: /usr/share/logstash/config/logstash.yml
+      - source: aws_credentials.yml
+        target: /usr/share/logstash/config/aws_credentials.yml
     healthcheck:
       test: bin/logstash --config.test_and_exit
       interval: 60s
@@ -35,6 +37,8 @@ secrets:
     file: ./config/logstash/pipeline/logstash.conf
   elasticsearch.yml:
     file: ./config/elasticsearch/elasticsearch.yml
+  aws_credentials.yml:
+    file: ./config/aws/credentials.yml
 
 networks: 
   stack:
