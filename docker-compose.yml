@@ -9,7 +9,7 @@ services:
     ports: ['9200:9200']
     networks: ['stack']
     volumes:
-      - 'es_data:/usr/share/elasticsearch/data'
+      - './data/elasticsearch:/usr/share/elasticsearch/data'
 
   logstash:
     image: logstash-cloudwatch_logs:latest
@@ -42,6 +42,3 @@ secrets:
 
 networks: 
   stack:
-
-volumes:
-  es_data:
