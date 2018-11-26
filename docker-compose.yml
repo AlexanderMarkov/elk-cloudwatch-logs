@@ -30,6 +30,16 @@ services:
     networks: ['stack']
     depends_on: ['elasticsearch']
 
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:6.5.1
+    container_name: kibana
+    secrets:
+      - source: kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+    ports: ['5601:5601']
+    networks: ['stack']
+    depends_on: ['elasticsearch']
+
 secrets:
   logstash.yml:
     file: ./config/logstash/logstash.yml
@@ -39,6 +49,8 @@ secrets:
     file: ./config/elasticsearch/elasticsearch.yml
   aws_credentials.yml:
     file: ./config/aws/credentials.yml
+  kibana.yml:
+    file: ./config/kibana/kibana.yml
 
 networks: 
   stack:
